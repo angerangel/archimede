@@ -8,6 +8,6 @@ Le domande sono memorizzate in un file a parte di tipo SQLite.
 
 # Sviluppatori
 
-Massimiliano Vessi
-Stefano Cardia
-Livio Sellone Renna (per le domande)
+* Massimiliano Vessi
+* Stefano Cardia
+* Livio Sellone Renna (per le domande)
