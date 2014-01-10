@@ -13,5 +13,6 @@ Per prima cosa ci serve sapere il tuo nome:
 <br>
 <input type=submit name=submit value="Comincia!" >
 </form>
-
+<hr>
+<a href=punteggi.php >Punteggi migliori</a>
 </div>
