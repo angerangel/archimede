@@ -22,13 +22,39 @@ session_start();
 			//ricordiamoci che in PHP gli elementi cominciano da zero			
 			$esatta = $row[0];			
 			if (isset($_POST[$esatta])){
+				#risposto esttamente
 				$_SESSION['archimede']['livello']++ ; //aumenta di uno
-				unset($_SESSION['archimede']['chiave']); //cancelliamo la domanda, cosi' ne verra' proposta una nuova
-				//il redirect in PHP deve essere con path assoluto, quindi meglio scrivere la seguente formula sempre valida:	
-				$host  = $_SERVER['HTTP_HOST'];
-				$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-				$extra = 'domande.php';
-				header("Location: http://$host$uri/$extra");
+				if ($_SESSION['archimede']['livello'] == 15) {
+					#ha vinto
+					#registriamo la il puntaggio
+					$db = new PDO('sqlite:punteggi.sqlite'); #connessione
+					#il nome potrebbe contenere apostrofi (che vanno raddoppiati in SQLite) e caratteri strani, meglio provvedere:
+					$nome = htmlspecialchars($_SESSION['archimede']['nome']);
+					$nome = str_replace("'","''", $nome);
+					#limitiamo il nome a 30 caratteri, così limitiamo la pubblicita'
+					$nome = substr($nome, 0, 30);
+					$query = "INSERT INTO punteggi (nome, punteggio, giorno ) VALUES ('$nome',". $_SESSION['archimede']['livello'] .", date('now') ) ";
+					$db->query($query);		
+					$nome = strtoupper($nome);
+					echo "
+					<div align=center>
+					<h1>HAI VINTO!</h1>
+					<h2>CONGRATULAZIONI $nome</h2>
+					Hai superato 15 difficilissime domande! Il tuo nome e' memorizzato nel nella lista dei vincitori!
+					<form action=punteggi.php method=get >
+					<input type=submit namme=submit value=Punteggi >
+					</form>
+					</div>
+					";
+					unset($_SESSION['archimede']);	
+					} else {
+					unset($_SESSION['archimede']['chiave']); //cancelliamo la domanda, cosi' ne verra' proposta una nuova
+					//il redirect in PHP deve essere con path assoluto, quindi meglio scrivere la seguente formula sempre valida:	
+					$host  = $_SERVER['HTTP_HOST'];
+					$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+					$extra = 'domande.php';
+					header("Location: http://$host$uri/$extra");
+					}
 				} else {
 				//ha perso				
 				#registriamo la il puntaggio

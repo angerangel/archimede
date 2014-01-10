@@ -20,7 +20,7 @@ if (empty($_SESSION['archimede']['nome']) or empty($_SESSION['archimede']['livel
 		//ricordiamoci che in PHP gli elementi cominciano da zero
 		$livello = $row[0];		
 		if ($livello == $_SESSION['archimede']['livello']) {
-			//ha la chiavegiusta, gli riproponiamo la stssa domanda
+			//ha la chiave giusta, gli riproponiamo la stssa domanda
 			//costruiamo la query da richiedere
 			$query = "SELECT chiave,domanda,a,b,c,d,esatta FROM domande WHERE chiave=" . $_SESSION['archimede']['chiave'] ;
 			//facciamo la richiesta
@@ -75,4 +75,20 @@ if (empty($_SESSION['archimede']['nome']) or empty($_SESSION['archimede']['livel
   </tr>
 </table>
 </form>
+<hr>
+<?php
+#qui mettiamo gli aiuti
+if ($_SESSION['archimede']['dacasa'] or  $_SESSION['archimede']['cinqecinq'] or $_SESSION['archimede']['pubblico'] ){
+	echo "<h2>AIUTI DISPONIBILI</h2>";
+	if ($_SESSION['archimede']['dacasa']) {
+		echo "<a href=aiuto1.php>Chiedi al computer</a><br>";
+		}
+	if ($_SESSION['archimede']['cinqecinq']) {
+		echo "<br> <a href=aiuto2.php>Elimina due domande errate</a> <br>";
+		}
+	if ($_SESSION['archimede']['pubblico']) {
+		echo "<br><a href=aiuto3.php>Sondaggio</a>";
+		}
+	}
+?>
 </div>

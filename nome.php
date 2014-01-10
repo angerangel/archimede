@@ -7,6 +7,9 @@ if (isset($_POST['submit'])  and !empty($_POST['nome'])) {
 	$_SESSION['archimede']['nome']= $_POST['nome'];	
 	//impostiamo il livello
 	$_SESSION['archimede']['livello']= 1 ;
+	$_SESSION['archimede']['dacasa']= true ;
+	$_SESSION['archimede']['cinqecinq']= true ;
+	$_SESSION['archimede']['pubblico']= true ;
 	//lo mandiamo alla pagine delle domande
 	//il redirect in PHP deve essere con path assoluto, quindi meglio scrivere la seguente formula sempre valida:	
 	$host  = $_SERVER['HTTP_HOST'];
