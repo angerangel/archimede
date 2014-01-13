@@ -66,12 +66,26 @@ if (empty($_SESSION['archimede']['nome']) or empty($_SESSION['archimede']['livel
 <form action=check.php method=post >
 <table>
   <tr>
-    <td align=rigth ><?php echo "<input  type=submit name=a value=\"$a\">"; ?></td>
-    <td align=left ><?php echo "<input  type=submit name=b value=\"$b\">"; ?></td>
+    <td align=right ><?php 
+    if (!isset($rispostaa)) {
+	echo "<input  type=submit name=a value=\"$a\">"; 
+	} 
+	?></td>
+    <td align=left ><?php 
+    if (!isset($rispostab)) {
+	echo "<input  type=submit name=b value=\"$b\">"; 
+	}?></td>
   </tr>
   <tr>
-    <td align=rigth><?php echo "<input  type=submit name=c value=\"$c\">"; ?></td>
-    <td align=left><?php echo "<input  type=submit name=d value=\"$d\">"; ?></td>
+    <td align=right><?php 
+    if (!isset($rispostac)) {
+	echo "<input  type=submit name=c value=\"$c\">"; 
+	}?></td>
+    <td align=left><?php 
+    if (!isset($rispostad)) {
+	echo "<input  type=submit name=d value=\"$d\">"; 
+	}
+	?></td>
   </tr>
 </table>
 </form>

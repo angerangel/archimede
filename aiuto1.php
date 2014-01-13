@@ -11,7 +11,10 @@ if (!$_SESSION['archimede']['dacasa']) {
 	header("Location: http://$host$uri/$extra");
 	}
 
-
+#Ha consumato l'aiuto
+$_SESSION['archimede']['dacasa'] = false ;
+//connettiamoci al database
+$db = new PDO('sqlite:secret/domande.sqlite');
 ##costruiamo la query da richiedere
 $query = "SELECT esatta FROM domande WHERE chiave=" . $_SESSION['archimede']['chiave'] ;
 //facciamo la richiesta
@@ -25,7 +28,7 @@ $risposte[0]= "a";
 $risposte[1]= "b";
 $risposte[2]= "c";
 $risposte[3]= "d";
-#$risposte[4]= $esatta;
+$risposte[4]= $esatta;
 
 #1 a 25 non la sa, e tira ad indovinare
 if ($cultura <= 25) {
@@ -33,26 +36,40 @@ $consiglio = rand(0,3);
 $frase = "...non so... la risposta mi sembra ..." . $risposte[$consiglio] ;
 }
 
-#da 26 a 50  scarta una sbagliata la sa, e tira ad indovinare
+#da 26 a 50  ha il 50% di ndovinare
 if ($cultura <= 50 and $cultura > 25) {
-#mescoliamo le risposte
-shuffle($risposte);
-#ne eliminiamo 1
-array_pop($stack);
-
-#ne
-$risposte[]= $esatta;
-$consiglio = rand(0,3);
+$test = rand(1,100);
+if ($test <= 50 ) {
+	#non la sa e tenta di indovinare	
+	$consiglio = rand(0,3);
+	} else {
+	#la sa
+	$consiglio = 4;
+	}
 $frase = "...forse... potrebbe esser la..." . $risposte[$consiglio] ;
 }
-# e cosi' via...
+
+#Da 50 a 75 ha il 75% di indovinare
 if ($cultura <= 75 and $cultura > 50) {
-$consiglio = rand(2,4);
-$frase = "...fammi pensare... credo sia la" . $risposte[$consiglio] ;
+$test = rand(1,100);
+if ($test <= 75 ) {
+	# la sa
+	$consiglio = 4;
+	} else {
+	#non la sa
+	#non la sa e tenta di indovinare	
+	$consiglio = rand(0,3);
+	}
+$frase = "...fammi pensare... credo sia la " . $risposte[$consiglio] ;
 }
 
 if ( $cultura > 75) {
 $frase = "...si... dovrebbe essere la " . $esatta ;
 }
-
+?>
+<div align=center>
+<h2>	IL RESPONSO DEL COMPUTER E':</H2>
+<tt>"<?php echo $frase;?>"</tt>
+</div>
+<?php require 'domande.php' ;?>
 

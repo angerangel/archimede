@@ -24,7 +24,7 @@ session_start();
 			if (isset($_POST[$esatta])){
 				#risposto esttamente
 				$_SESSION['archimede']['livello']++ ; //aumenta di uno
-				if ($_SESSION['archimede']['livello'] == 15) {
+				if ($_SESSION['archimede']['livello'] == 16) {
 					#ha vinto
 					#registriamo la il puntaggio
 					$db = new PDO('sqlite:punteggi.sqlite'); #connessione
@@ -58,25 +58,39 @@ session_start();
 				} else {
 				//ha perso				
 				#registriamo la il puntaggio
-				$db = new PDO('sqlite:punteggi.sqlite'); #connessione
-				#il nome potrebbe contenere apostrofi (che vanno raddoppiati in SQLite) e caratteri strani, meglio provvedere:
-				$nome = htmlspecialchars($_SESSION['archimede']['nome']);
-				$nome = str_replace("'","''", $nome);
-				#limitiamo il nome a 30 caratteri, così limitiamo la pubblicita'
-				$nome = substr($nome, 0, 30);
-				$query = "INSERT INTO punteggi (nome, punteggio, giorno ) VALUES ('$nome',". $_SESSION['archimede']['livello'] .", date('now') ) ";
-				$db->query($query);
-				$livello = $_SESSION['archimede']['livello'];
-				echo "
-					<div align=center>
-					<h1>HAI SBAGLIATO!</h1>
-					Il tuo punteggio e' di $livello. <br>
-					Non ti abbattere, la prossima volta andra' meglio.
-					<form action=espulso.php method=get >
-					<input type=submit namme=submit value=\"Ricomincia!\" >
-					</form>
-					</div>
-					";
+				#vediamo se ha risposto almento ad una domanda:
+				if ($_SESSION['archimede']['livello'] > 1){
+					$livello = $_SESSION['archimede']['livello'] - 1 ;
+					$db = new PDO('sqlite:punteggi.sqlite'); #connessione
+					#il nome potrebbe contenere apostrofi (che vanno raddoppiati in SQLite) e caratteri strani, meglio provvedere:
+					$nome = htmlspecialchars($_SESSION['archimede']['nome']);
+					$nome = str_replace("'","''", $nome);
+					#limitiamo il nome a 30 caratteri, così limitiamo la pubblicita'
+					$nome = substr($nome, 0, 30);				
+					$query = "INSERT INTO punteggi (nome, punteggio, giorno ) VALUES ('$nome',$livello, date('now') ) ";
+					$db->query($query);
+					$livello = $_SESSION['archimede']['livello'];
+					echo "
+						<div align=center>
+						<h1>HAI SBAGLIATO!</h1>
+						Il tuo punteggio e' di $livello. <br>
+						Non ti abbattere, la prossima volta andra' meglio.
+						<form action=espulso.php method=get >
+						<input type=submit namme=submit value=\"Ricomincia!\" >
+						</form>
+						</div>
+						";
+					} else {
+					#non ha preso neanche una domanda
+					echo "
+						<div align=center>
+						<h1>HAI SBAGLIATO!</h1>						
+						Non ti abbattere, la prossima volta andra' meglio.
+						<form action=espulso.php method=get >
+						<input type=submit namme=submit value=\"Ricomincia!\" >
+						</form>
+						</div>";
+					}
 				unset($_SESSION['archimede']);	
 				}
 			
