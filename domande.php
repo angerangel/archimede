@@ -59,6 +59,11 @@ if (empty($_SESSION['archimede']['nome']) or empty($_SESSION['archimede']['livel
 		}
 	}	
 ?>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="bottoni.css">
+</head>
+<body>
 <div align=center>
 <h1>Domanda <?php echo $_SESSION['archimede']['livello'];?></h1>
 <h2><?php echo $domanda; ?></h2>
@@ -68,22 +73,22 @@ if (empty($_SESSION['archimede']['nome']) or empty($_SESSION['archimede']['livel
   <tr>
     <td align=right ><?php 
     if (!isset($rispostaa)) {
-	echo "<input  type=submit name=a value=\"$a\">"; 
+	echo "<input class=aa type=submit name=a value=\"$a\">"; 
 	} 
 	?></td>
     <td align=left ><?php 
     if (!isset($rispostab)) {
-	echo "<input  type=submit name=b value=\"$b\">"; 
+	echo "<input class=bb type=submit name=b value=\"$b\">"; 
 	}?></td>
   </tr>
   <tr>
     <td align=right><?php 
     if (!isset($rispostac)) {
-	echo "<input  type=submit name=c value=\"$c\">"; 
+	echo "<input class=cc type=submit name=c value=\"$c\">"; 
 	}?></td>
     <td align=left><?php 
     if (!isset($rispostad)) {
-	echo "<input  type=submit name=d value=\"$d\">"; 
+	echo "<input class=dd type=submit name=d value=\"$d\">"; 
 	}
 	?></td>
   </tr>
@@ -105,4 +110,9 @@ if ($_SESSION['archimede']['dacasa'] or  $_SESSION['archimede']['cinqecinq'] or 
 		}
 	}
 ?>
+<br> <br>
+<!-- qui potete mettere altre aggiunte-->
+<?php require 'altro.php' ?>
 </div>
+</body>
+</html>

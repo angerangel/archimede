@@ -14,5 +14,10 @@ Per prima cosa ci serve sapere il tuo nome:
 <input type=submit name=submit value="Comincia!" >
 </form>
 <hr>
-<a href=punteggi.php >Punteggi migliori</a>
+<a href=punteggi.php ><b>Punteggi migliori</b></a>
+<br> - <br>
+<a href=https://github.com/angerangel/archimede >Codice sorgente</a> - <a href=mailto:angerangel@gmail.com >Contattaci</a>
+<hr>
+<!-- qui potete mettere altre aggiunte-->
+<?php require 'altro.php' ?>
 </div>
