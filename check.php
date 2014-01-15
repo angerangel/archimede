@@ -4,6 +4,14 @@ session_start();
 
 //controlliamo se ha gia' la domanda 
 	if (!empty($_SESSION['archimede']['chiave'])) {	
+		#vediamo se ci sta provando
+		$test = 0 ;		
+		if (isset($_POST['a'])) { $test++;}
+		if (isset($_POST['b'])) { $test++;}
+		if (isset($_POST['c'])) { $test++;}
+		if (isset($_POST['d'])) { $test++;}
+		if ($test > 1) { require 'espulso.php' ;}
+		
 		//ha la chiave
 		//db connect
 		$db = new PDO('sqlite:secret/domande.sqlite');

@@ -19,5 +19,5 @@ Per prima cosa ci serve sapere il tuo nome:
 <a href=https://github.com/angerangel/archimede >Codice sorgente</a> - <a href=mailto:angerangel@gmail.com >Contattaci</a>
 <hr>
 <!-- qui potete mettere altre aggiunte-->
-<?php require 'altro.php' ?>
+<?php require 'altro.php' ; ?>
 </div>
