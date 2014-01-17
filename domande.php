@@ -1,6 +1,6 @@
 <?php
 //utiliziamo le sessioni
-session_start();
+require_once 'sessione.php' ; 
 
 
 //controlliamo che non sia un hacker
@@ -72,22 +72,22 @@ if (empty($_SESSION['archimede']['nome']) or empty($_SESSION['archimede']['livel
 <table>
   <tr>
     <td align=right ><?php 
-    if (!isset($rispostaa)) {
+    if (!isset($_SESSION['archimede']['rispostaa'])) {
 	echo "<input class=aa type=submit name=a value=\"A: $a\">"; 
 	} 
 	?></td>
     <td align=left ><?php 
-    if (!isset($rispostab)) {
+    if (!isset($_SESSION['archimede']['rispostab'])) {
 	echo "<input class=bb type=submit name=b value=\"B: $b\">"; 
 	}?></td>
   </tr>
   <tr>
     <td align=right><?php 
-    if (!isset($rispostac)) {
+    if (!isset($_SESSION['archimede']['rispostac'])) {
 	echo "<input class=cc type=submit name=c value=\"C: $c\">"; 
 	}?></td>
     <td align=left><?php 
-    if (!isset($rispostad)) {
+    if (!isset($_SESSION['archimede']['rispostad'])) {
 	echo "<input class=dd type=submit name=d value=\"D: $d\">"; 
 	}
 	?></td>

@@ -2,6 +2,9 @@
 //utiliziamo le sessioni
 session_start();
 
+#eliminiamo le variabili  di sessione create da aiuto2.php
+unset($_SESSION['archimede']['rispostaa'], $_SESSION['archimede']['rispostab'],  $_SESSION['archimede']['rispostac'] , $_SESSION['archimede']['rispostad'] ) ;
+
 //controlliamo se ha gia' la domanda 
 	if (!empty($_SESSION['archimede']['chiave'])) {	
 		#vediamo se ci sta provando

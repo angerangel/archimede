@@ -22,24 +22,24 @@ $row = $db->query($query)->fetch();
 //ricordiamoci che in PHP gli elementi cominciano da zero
 $esatta = $row[0];
 
-$rispostaa = $rispostab = $rispostac = $rispostad = true ;
+$_SESSION['archimede']['rispostaa'] = $_SESSION['archimede']['rispostab'] = $_SESSION['archimede']['rispostac'] = $_SESSION['archimede']['rispostad'] = true ;
 
 switch ($esatta) {
 	case "a":
 		$pos = 1;
-		unset($rispostaa);
+		unset($_SESSION['archimede']['rispostaa']);
 		break;
 	case "b":
 		$pos = 2;
-		unset($rispostab);
+		unset($_SESSION['archimede']['rispostab']);
 		break;
 	case "c":
 		$pos = 3;
-		unset($rispostac);
+		unset($_SESSION['archimede']['rispostac']);
 		break;
 	case "d":
 		$pos = 4;
-		unset($rispostad);
+		unset($_SESSION['archimede']['rispostad']);
 		break;
 	}
 
@@ -51,16 +51,16 @@ if ($conserv > 4) { $conserv = $conserv - 4 ;}
 
 switch ($conserv) {
 	case 1 :		
-		unset($rispostaa);
+		unset($_SESSION['archimede']['rispostaa']);
 		break;
 	case 2 :		
-		unset($rispostab);
+		unset($_SESSION['archimede']['rispostab']);
 		break;
 	case 3 :		
-		unset($rispostac);
+		unset($_SESSION['archimede']['rispostac']);
 		break;
 	case 4 :		
-		unset($rispostad);
+		unset($_SESSION['archimede']['rispostad']);
 		break;
 	}
 
