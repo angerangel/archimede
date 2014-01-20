@@ -2,6 +2,8 @@
 //utiliziamo le sessioni
 require_once 'sessione.php' ; 
 
+#controllo mobile
+require_once 'detectmobile.php' ;
 
 //controlliamo che non sia un hacker
 if (empty($_SESSION['archimede']['nome']) or empty($_SESSION['archimede']['livello']) or $_SESSION['archimede']['livello'] < 1 or $_SESSION['archimede']['livello'] > 15 ) {
@@ -64,7 +66,9 @@ if (empty($_SESSION['archimede']['nome']) or empty($_SESSION['archimede']['livel
 <link rel="stylesheet" type="text/css" href="bottoni.css"> 
 </head>
 <body>
-<div align=center>
+<div 
+<?php  if (!$mobile) {echo "align=center";}?>
+>
 <h1>Domanda <?php echo $_SESSION['archimede']['livello'];?></h1>
 <h2><?php echo $domanda; ?></h2>
 <hr>

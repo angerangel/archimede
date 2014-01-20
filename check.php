@@ -5,6 +5,9 @@ session_start();
 #eliminiamo le variabili  di sessione create da aiuto2.php
 unset($_SESSION['archimede']['rispostaa'], $_SESSION['archimede']['rispostab'],  $_SESSION['archimede']['rispostac'] , $_SESSION['archimede']['rispostad'] ) ;
 
+#controllo mobile
+require_once 'detectmobile.php' ;
+
 //controlliamo se ha gia' la domanda 
 	if (!empty($_SESSION['archimede']['chiave'])) {	
 		#vediamo se ci sta provando
@@ -40,9 +43,9 @@ unset($_SESSION['archimede']['rispostaa'], $_SESSION['archimede']['rispostab'], 
 				$query = "INSERT INTO punteggi (nome, punteggio, giorno ) VALUES ('$nome',". $_SESSION['archimede']['livello'] .", date('now') ) ";
 				$db->query($query);		
 				$nome = strtoupper($nome);
-				echo "
-				<div align=center>
-				<h1>HAI VINTO!</h1>
+				echo "<div" ;				
+				if (!$mobile) {echo "align=center";}
+				echo "><h1>HAI VINTO!</h1>
 				<h2>CONGRATULAZIONI $nome</h2>
 				Hai superato 15 difficilissime domande! Il tuo nome e' memorizzato nel nella lista dei vincitori!
 				<form action=punteggi.php method=get >
@@ -74,8 +77,9 @@ unset($_SESSION['archimede']['rispostaa'], $_SESSION['archimede']['rispostab'], 
 				$nome = substr($nome, 0, 30);				
 				$query = "INSERT INTO punteggi (nome, punteggio, giorno ) VALUES ('$nome',$livello, date('now') ) ";
 				$db->query($query);				
-				echo "
-					<div align=center>
+				echo "<div" ;				
+				if (!$mobile) {echo "align=center";}
+				echo ">
 					<h1>HAI SBAGLIATO!</h1>
 					Il tuo punteggio e' di $livello. <br>
 					Non ti abbattere, la prossima volta andra' meglio.
@@ -88,8 +92,9 @@ unset($_SESSION['archimede']['rispostaa'], $_SESSION['archimede']['rispostab'], 
 					";
 				} else {
 				#non ha preso neanche una domanda
-				echo "
-					<div align=center>
+				echo "<div" ;				
+				if (!$mobile) {echo "align=center";}
+				echo ">
 					<h1>HAI SBAGLIATO!</h1>						
 					Non ti abbattere, la prossima volta andra' meglio.
 					<form action=espulso.php method=get >

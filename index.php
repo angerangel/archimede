@@ -1,9 +1,11 @@
-<? php
-//questa deve essere la pagina di avvio
-//Tutti i valori duraturi nel temp saranno memorizzati in una sessione
+<?php
+#questa deve essere la pagina di avvio
+#Tutti i valori duraturi nel temp saranno memorizzati in una sessione
 //Prossimamente metteremo un controllo per vedere se la partita era conclusa o riprenderla dal momento in cui si era interrotta
+# controllo mobile
+require_once 'detectmobile.php' ;
 ?>
-<div align=center >
+<div <?php  if (!$mobile) {echo "align=center";}?> >
 <h1>ARCHIMEDE</h1>
 
 Benvenuto su Archimede, il gioco di intelligenza che ti mettera' a dura prova. Riuscirai a superare tutte e 15 le domande?<br>

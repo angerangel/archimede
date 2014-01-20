@@ -82,8 +82,11 @@ $immagineD = ImageCreate($sondaggio[4],20);
 $blu = imageColorAllocate($immagineD, 0,0,255);
 ImageFill($immagineD,0,0,$blu);
 ImageJPEG($immagineD, 'sondaggioD.jpg');
+
+#controllo mobile
+require_once 'detectmobile.php' ;
 ?>
-<DIV ALIGN=CENTER>
+<DIV  <?php  if (!$mobile) {echo "align=center";}?> >
 <h2>RISULTATO SONDAGGIO</H2>
 <table>
 <tr><td>Riposta A:</td><td><img src=sondaggioA.jpg ></td><td><?php echo $sondaggio[1] ?>%</td></tr>

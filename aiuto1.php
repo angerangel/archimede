@@ -66,8 +66,10 @@ $frase = "...fammi pensare... credo sia la " . $risposte[$consiglio] ;
 if ( $cultura > 75) {
 $frase = "...si... dovrebbe essere la " . $esatta ;
 }
+#controllo mobile
+require_once 'detectmobile.php' ;
 ?>
-<div align=center>
+<div  <?php  if (!$mobile) {echo "align=center";}?> >
 <h2>	IL RESPONSO DEL COMPUTER E':</H2>
 <tt>"<?php echo $frase;?>"</tt>
 </div>

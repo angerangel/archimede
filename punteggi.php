@@ -1,7 +1,13 @@
-<div align=center>
+<?PHP
+#controllo mobile
+require_once 'detectmobile.php' ;
+?>
+<div 
+<?php  if (!$mobile) {echo "align=center";}?>
+>
 <h1>PUNTEGGI MIGLIORI</h1>
 <a href=index.php >Torna indietro</a>
-<table width=100% cellspacing=0 >
+<table cellspacing=0 >
 <tr>
 	<th align=center>Punteggio</th>
 	<th align=center>Nome</th>
