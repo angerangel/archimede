@@ -1,3 +1,4 @@
 # File da ignorare
 secret/domande.sqlite
 altro.php
+secret/admins.php
