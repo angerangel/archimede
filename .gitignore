@@ -1,2 +1,3 @@
-secret\domande.sqlite
+# File da ignorare
+secret/domande.sqlite
 altro.php
