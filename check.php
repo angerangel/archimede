@@ -43,8 +43,8 @@ require_once 'detectmobile.php' ;
 				$query = "INSERT INTO punteggi (nome, punteggio, giorno ) VALUES ('$nome',". $_SESSION['archimede']['livello'] .", date('now') ) ";
 				$db->query($query);		
 				$nome = strtoupper($nome);
-				echo "<div" ;				
-				if (!$mobile) {echo "align=center";}
+				echo "<div " ;				
+				if (!$mobile) {echo " align=center ";}
 				echo "><h1>HAI VINTO!</h1>
 				<h2>CONGRATULAZIONI $nome</h2>
 				Hai superato 15 difficilissime domande! Il tuo nome e' memorizzato nel nella lista dei vincitori!
