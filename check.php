@@ -77,8 +77,8 @@ require_once 'detectmobile.php' ;
 				$nome = substr($nome, 0, 30);				
 				$query = "INSERT INTO punteggi (nome, punteggio, giorno ) VALUES ('$nome',$livello, date('now') ) ";
 				$db->query($query);				
-				echo "<div" ;				
-				if (!$mobile) {echo "align=center";}
+				echo "<div " ;				
+				if (!$mobile) {echo " align=center ";}
 				echo ">
 					<h1>HAI SBAGLIATO!</h1>
 					Il tuo punteggio e' di $livello. <br>
@@ -92,8 +92,8 @@ require_once 'detectmobile.php' ;
 					";
 				} else {
 				#non ha preso neanche una domanda
-				echo "<div" ;				
-				if (!$mobile) {echo "align=center";}
+				echo "<div " ;				
+				if (!$mobile) {echo " align=center ";}
 				echo ">
 					<h1>HAI SBAGLIATO!</h1>						
 					Non ti abbattere, la prossima volta andra' meglio.

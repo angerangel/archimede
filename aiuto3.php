@@ -50,6 +50,7 @@ unset($temp); #da usare sempre dopo un foreach
 
 $indecisi = 100 - ( $sondaggio[1] + $sondaggio[2] + $sondaggio[3] + $sondaggio[4])  ;
 
+
 switch ($esatta) {
 	case "a":
 		$sondaggio[1] += $indecisi ;
@@ -65,20 +66,30 @@ switch ($esatta) {
 		break;
 	}
 
+#se uno dei sondaggi e' zero, la creazione dell'immagine fa un disastro, evitiamolo
+#creiamo delle copie delle variabili temporanee solo per fare le immagini
 
-$immagineA = ImageCreate( $sondaggio[1], 20);
+for ($i = 1; $i <= 4; $i++) {
+    if ($sondaggio[$i] == 0 ) {
+	$tsondaggio[$i] = 1;
+	} else {
+	$tsondaggio[$i] = $sondaggio[$i];
+	}
+}
+
+$immagineA = ImageCreate( $tsondaggio[1], 20);
 $blu = imageColorAllocate($immagineA, 0,0,255);
 ImageFill($immagineA,0,0,$blu);
 ImageJPEG($immagineA, 'sondaggioA.jpg');
-$immagineB = ImageCreate($sondaggio[2],20);
+$immagineB = ImageCreate($tsondaggio[2],20);
 $blu = imageColorAllocate($immagineB, 0,0,255);
 ImageFill($immagineB,0,0,$blu);
 ImageJPEG($immagineB, 'sondaggioB.jpg');
-$immagineC = ImageCreate($sondaggio[3],20);
+$immagineC = ImageCreate($tsondaggio[3],20);
 $blu = imageColorAllocate($immagineC, 0,0,255);
 ImageFill($immagineC,0,0,$blu);
 ImageJPEG($immagineC, 'sondaggioC.jpg');
-$immagineD = ImageCreate($sondaggio[4],20);
+$immagineD = ImageCreate($tsondaggio[4],20);
 $blu = imageColorAllocate($immagineD, 0,0,255);
 ImageFill($immagineD,0,0,$blu);
 ImageJPEG($immagineD, 'sondaggioD.jpg');
