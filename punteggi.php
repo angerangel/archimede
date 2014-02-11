@@ -17,7 +17,7 @@ require_once 'detectmobile.php' ;
 //qui dovrebbero esserci tutti i punteggi realizzati
 #db connect
 $db = new PDO('sqlite:punteggi.sqlite');
-$query = "SELECT punteggio, nome, giorno FROM punteggi ORDER BY punteggio DESC,giorno DESC,nome  ";
+$query = "SELECT DISTINCT punteggio, nome, giorno FROM punteggi ORDER BY punteggio DESC,giorno DESC,nome  ";
 
 $contalinee = 0;
 $primo = 0;
