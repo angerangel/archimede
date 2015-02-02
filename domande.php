@@ -28,12 +28,12 @@ if (empty($_SESSION['archimede']['nome']) or empty($_SESSION['archimede']['livel
 			//facciamo la richiesta
 			$row = $db->query($query)->fetch();
 			//ricordiamoci che in PHP gli elementi cominciano da zero			
-			//tasformiaro i caratteri orblmetici dell'HTML
-			$domanda = htmlspecialchars($row[1]);
-			$a = htmlspecialchars($row[2]);
-			$b = htmlspecialchars($row[3]);
-			$c = htmlspecialchars($row[4]);
-			$d = htmlspecialchars($row[5]);
+			//tasformiaro i caratteri  problematici dell'HTML
+			$domanda = htmlspecialchars($row[1],ENT_IGNORE);
+			$a = htmlspecialchars($row[2],ENT_IGNORE);
+			$b = htmlspecialchars($row[3],ENT_IGNORE);
+			$c = htmlspecialchars($row[4],ENT_IGNORE);
+			$d = htmlspecialchars($row[5],ENT_IGNORE);
 			$esatta = $row[6];
 			//mettiamo i valri importanti nella sessione			
 			$_SESSION['archimede']['esatta']= $esatta;				
@@ -49,11 +49,11 @@ if (empty($_SESSION['archimede']['nome']) or empty($_SESSION['archimede']['livel
 		//ricordiamoci che in PHP gli elementi cominciano da zero
 		$chiave = $row[0];
 		//tasformiaro i caratteri orblmetici dell'HTML
-		$domanda = htmlspecialchars($row[1]);
-		$a = htmlspecialchars($row[2]);
-		$b = htmlspecialchars($row[3]);
-		$c = htmlspecialchars($row[4]);
-		$d = htmlspecialchars($row[5]);
+		$domanda = htmlspecialchars($row[1],ENT_IGNORE);
+		$a = htmlspecialchars($row[2],ENT_IGNORE);
+		$b = htmlspecialchars($row[3],ENT_IGNORE);
+		$c = htmlspecialchars($row[4],ENT_IGNORE);
+		$d = htmlspecialchars($row[5],ENT_IGNORE);
 		$esatta = $row[6];
 		//mettiamo i valri importanti nella sessione
 		$_SESSION['archimede']['chiave']= $chiave;

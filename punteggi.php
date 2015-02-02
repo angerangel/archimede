@@ -17,13 +17,13 @@ require_once 'detectmobile.php' ;
 //qui dovrebbero esserci tutti i punteggi realizzati
 #db connect
 $db = new PDO('sqlite:punteggi.sqlite');
-$query = "SELECT DISTINCT punteggio, nome, giorno FROM punteggi ORDER BY punteggio DESC,giorno DESC,nome  ";
+$query = "SELECT DISTINCT max(punteggio), nome, giorno FROM punteggi GROUP BY nome ORDER BY max(punteggio) DESC,giorno DESC,nome  ";
 
 $contalinee = 0;
 $primo = 0;
 $secondo = 0 ;
 foreach ($db->query($query) as $row) {
-	$punteggio = $row['punteggio'];
+	$punteggio = $row[0];
 	$nome = $row['nome'];
 	$giorno = $row['giorno'];
 	$contalinee += 1 ;
@@ -43,5 +43,12 @@ foreach ($db->query($query) as $row) {
 ?>
 </table>
 
-
+Partite giocate: 
+<?php
+$query = "SELECT max(rowid) FROM punteggi;" ;
+$db->query($query) ;
+$row = $db->query($query)->fetch();
+$row = $row[0];
+echo $row;
+?>
 </div>
